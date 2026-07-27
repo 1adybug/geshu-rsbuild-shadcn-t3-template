@@ -3,6 +3,9 @@ import { createRoot } from "react-dom/client"
 
 import App from "./App"
 
+import "@fontsource-variable/inter"
+import "@fontsource-variable/noto-sans-sc/wght.css"
+
 import "./index.css"
 
 const root = createRoot(document.getElementById("root") as HTMLDivElement)
