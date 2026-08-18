@@ -1,7 +1,6 @@
 import { defineConfig } from "@rsbuild/core"
 import { pluginReact } from "@rsbuild/plugin-react"
 import { pluginSvgr } from "@rsbuild/plugin-svgr"
-import { pluginTailwindcss } from "@rsbuild/plugin-tailwindcss"
 import { sdrrRsbuildPlugin } from "sdrr/rsbuild"
 
 function getDevelopmentPort() {
@@ -33,7 +32,6 @@ export default defineConfig({
             reactCompiler: true,
         }),
         pluginSvgr(),
-        pluginTailwindcss(),
         sdrrRsbuildPlugin(),
     ],
     server: {
