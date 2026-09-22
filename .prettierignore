@@ -12,4 +12,3 @@ generated
 .cursor
 AGENTS.md
 components/ui
-utils/shadcn.ts
