@@ -1,11 +1,11 @@
 import { useId } from "react"
 
 import { createUseMutation } from "soda-tanstack-query"
-import { toast } from "sonner"
 
 import { login } from "@/apis/login"
 
 import { cookieStorage } from "@/utils/cookieStorage"
+import { toast } from "@/utils/toast"
 
 export const useLogin = createUseMutation(() => {
     const key = useId()
