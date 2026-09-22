@@ -205,7 +205,7 @@ npx --yes shadcn@latest preset decode b6HGg41FS
 若目标项目仍采用本模板的根目录结构，优先沿用以下目录约定：
 
 - CLI 生成组件：`components/ui`。
-- shadcn 工具文件：`utils/shadcn.ts`。
+- 类名合并直接使用 `cn` 依赖导出的 `cn`，组件生成器的 `aliases.utils` 配置为 `cn`。
 - 公共业务组件：`components`，不要放入 `components/ui`。
 
 不要手写 `components/ui` 的组件实现。创建好 `components.json` 后，根据目标项目实际使用到的 Ant Design 组件，通过当前 shadcn CLI 添加对应组件。
@@ -285,7 +285,7 @@ npx --yes shadcn@latest preset decode b6HGg41FS
 对于本模板家族，默认忽略：
 
 - `components/ui`；
-- shadcn 工具文件，例如 `utils/shadcn.ts`。
+- `cn` 依赖及组件生成器的 `aliases.utils` 配置。
 
 这样可以避免项目格式化规则反复改写 CLI 生成源码。
 
