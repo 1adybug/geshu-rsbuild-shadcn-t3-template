@@ -1,9 +1,9 @@
 import { getErrorMessage, isPlainObject } from "deepsea-tools"
-import { toast } from "sonner"
 
 import { ApiOrigin, ApiPrefix } from "@/constants"
 
 import { cookieStorage } from "@/utils/cookieStorage"
+import { toast } from "@/utils/toast"
 
 import { logout } from "./logout"
 

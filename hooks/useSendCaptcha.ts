@@ -1,9 +1,10 @@
 import { useId } from "react"
 
 import { createUseMutation } from "soda-tanstack-query"
-import { toast } from "sonner"
 
 import { sendCaptcha } from "@/apis/sendCaptcha"
+
+import { toast } from "@/utils/toast"
 
 export const useSendCaptcha = createUseMutation(() => {
     const key = useId()
