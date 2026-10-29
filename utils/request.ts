@@ -1,4 +1,4 @@
-import { getErrorMessage, isPlainObject } from "deepsea-tools"
+import { getErrorMessage, isPlainObject } from "@1adybug/tools"
 
 import { ApiOrigin, ApiPrefix } from "@/constants"
 

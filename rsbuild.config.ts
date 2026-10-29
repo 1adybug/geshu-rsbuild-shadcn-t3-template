@@ -1,8 +1,8 @@
+import { sdrrRsbuildPlugin } from "@1adybug/react-router-cli/rsbuild"
 import { defineConfig } from "@rsbuild/core"
 import { pluginReact } from "@rsbuild/plugin-react"
 import { pluginSvgr } from "@rsbuild/plugin-svgr"
 import { pluginTailwindcss } from "@rsbuild/plugin-tailwindcss"
-import { sdrrRsbuildPlugin } from "sdrr/rsbuild"
 
 function getDevelopmentPort() {
     const value = process.env.PORT?.trim()

@@ -1,6 +1,6 @@
 import { useId } from "react"
 
-import { createUseMutation } from "soda-tanstack-query"
+import { createUseMutation } from "@1adybug/tanstack-query"
 
 import { login } from "@/apis/login"
 

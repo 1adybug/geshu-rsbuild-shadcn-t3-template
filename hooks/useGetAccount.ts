@@ -1,4 +1,4 @@
-import { createUseQuery } from "soda-tanstack-query"
+import { createUseQuery } from "@1adybug/tanstack-query"
 
 import { getAccount } from "@/apis/getAccount"
 

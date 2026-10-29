@@ -84,7 +84,7 @@ export type Gender = (typeof Gender)[keyof typeof Gender]
 
 #### 类名与动态值
 
-- 合并外部和内置类名时复用项目工具；优先使用 `cn` 导出的 `cn` 或者 `deepsea-tools` 导出的 `clsx`，不手写条件字符串拼接，也不为此新增依赖。
+- 合并外部和内置类名时复用项目工具；优先使用 `cn` 导出的 `cn` 或者 `@1adybug/tools` 导出的 `clsx`，不手写条件字符串拼接，也不为此新增依赖。
 - Tailwind 有限状态使用完整的静态类名，再按条件选择；不要拼接扫描器无法识别的类名，如 `` `w-${width}px` ``。
 - 运行时尺寸、坐标或颜色直接用 `style` 或 CSS 变量承载，不必先绕行主题或枚举无限取值。
 
@@ -132,16 +132,16 @@ return <div className={clsx("text-base", sizeClassName, className)} />
 
 - 原始业务模型通过 `data` 传入，复用对应类型，不拆成大量平铺字段；没有数据就不能合法渲染时，`data` 必填。
 - 只有确实透传属性时才继承根元素或根组件的 Props。优先复用已导出的 Props，否则使用 `ComponentProps<...>`，排除组件自行接管或不支持的属性。
-- 已使用 `deepsea-tools` 时可用 `StrictOmit`；不要为一个类型工具新增依赖。
+- 已使用 `@1adybug/tools` 时可用 `StrictOmit`；不要为一个类型工具新增依赖。
 - 在函数参数中解构使用的属性，只有可以安全透传时才收集 `...rest`。不要把业务字段泄漏给 DOM，也不要让透传属性覆盖组件必须维护的行为。
 - JSX 属性按身份、样式、数据、事件、透传组织；该顺序不得改变覆盖语义，存在同名冲突时先显式解构并组合。
 
-以下示例沿用项目已有的 `deepsea-tools` 和 `Book` 业务类型：
+以下示例沿用项目已有的 `@1adybug/tools` 和 `Book` 业务类型：
 
 ```tsx
 import type { ComponentProps, FC } from "react"
 
-import { type StrictOmit, clsx } from "deepsea-tools"
+import { type StrictOmit, clsx } from "@1adybug/tools"
 import type { Book } from "@/apis/queryBook"
 
 export interface BookCardProps extends StrictOmit<ComponentProps<"div">, "children" | "dangerouslySetInnerHTML"> {
@@ -162,7 +162,7 @@ export const BookCard: FC<BookCardProps> = ({ className, data, ...rest }) => (
 - 组合外部回调与内部逻辑时明确执行顺序；允许外部阻止默认行为时先调用外部回调，检查 `event.defaultPrevented` 后再执行内部逻辑。
 - `value`、`onChange`、`onValueChange` 等沿用底层组件和项目约定，不为统一名称改写已有公共 API。
 - 完全受控组件直接渲染外部 `value`，只通过回调请求更新，不复制成内部 state。支持非受控模式时，`defaultValue` 仅负责初始化，内部状态只服务于非受控模式。
-- 同一实例不主动切换受控与非受控模式；不能仅靠监听 `value` 并同步内部 state 来实现两种模式。使用 `soda-hooks` 等已有工具前确认它符合该组件的状态契约。
+- 同一实例不主动切换受控与非受控模式；不能仅靠监听 `value` 并同步内部 state 来实现两种模式。使用 `@1adybug/hooks` 等已有工具前确认它符合该组件的状态契约。
 
 #### ref 与组件边界
 
@@ -186,7 +186,7 @@ export const BookCard: FC<BookCardProps> = ({ className, data, ...rest }) => (
 
 - 从文档、服务端定义或已验证的现有实现确认路径、方法、参数位置和响应结构，不凭 CRUD 名称推断契约，也不臆造字段、枚举或接口。
 - 关键信息缺失时，先查已有定义；仍无法确认则只询问影响实现的缺失项，同时完成契约已明确的部分，不用占位请求伪装成可用实现。
-- 优先复用已有请求封装、类型、枚举和 Hook。以下 `deepsea-tools`、`soda-tanstack-query` 用法只适用于已使用这些库且版本支持的项目。
+- 优先复用已有请求封装、类型、枚举和 Hook。以下 `@1adybug/tools`、`@1adybug/tanstack-query` 用法只适用于已使用这些库且版本支持的项目。
 - 文件名、函数名与接口语义一致，如 `queryUser.ts` 导出 `queryUser`。列表、详情、新增、更新、删除分别参考 `queryXxx`、`getXxx`、`addXxx`、`updateXxx`、`deleteXxx`，不自动补齐未要求的接口。
 
 #### 参数与类型
@@ -194,7 +194,7 @@ export const BookCard: FC<BookCardProps> = ({ className, data, ...rest }) => (
 - 对象参数使用 `params: XxxParams`；全部字段可选且无参数调用有意义时，默认值为 `= {}`。
 - 保持文档字段名。字段可能缺失才用 `?`，明确可空用 `T | null`；两种语义不要混用。
 - 新增、更新参数可以用 `Pick`、`Omit`、`Partial` 复用模型，但必须符合请求契约，不带入只读、审计或服务端生成字段，不默认把更新字段全部变为可选。
-- 仅在分页响应确实匹配时使用 `deepsea-tools` 的 `Page<T>`；不同分页结构按真实响应定义，不能靠泛型抹平差异。
+- 仅在分页响应确实匹配时使用 `@1adybug/tools` 的 `Page<T>`；不同分页结构按真实响应定义，不能靠泛型抹平差异。
 - 文档明确有限取值时按 Base Rules 的枚举约定建模，键使用准确的中文说明，值保留文档取值；开放集合不要擅自收窄为枚举。
 
 #### 请求实现
@@ -219,7 +219,7 @@ export async function getUser(id: string) {
 #### Hook 与副作用
 
 - 只为客户端实际需要的查询或操作生成 `@/hooks/useXxx.ts`。服务端专用、下载和流式接口不自动生成 Hook。
-- 已使用 `soda-tanstack-query` 时，查询采用 `createUseQuery`，变更采用 `createUseMutation`；其他项目沿用已有方案。
+- 已使用 `@1adybug/tanstack-query` 时，查询采用 `createUseQuery`，变更采用 `createUseMutation`；其他项目沿用已有方案。
 - `queryKey` 的基础名称采用 API 函数名的短横线形式，如 `query-user`、`get-user`；确认封装把影响响应的参数纳入最终缓存键，避免不同筛选或详情共用缓存。
 - 详情标识符尚未就绪时不发送请求，按现有封装选择禁用查询或返回 `null` 的适配函数。空值判断遵循标识符契约，不把合法的 `0` 当作缺失。
 - 操作成功后刷新或更新实际受影响的列表、详情缓存；按已安装版本确认回调参数，不套用其他版本的签名。
