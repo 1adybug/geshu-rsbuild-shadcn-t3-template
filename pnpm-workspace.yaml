@@ -8,11 +8,11 @@ minimumReleaseAgeExclude:
     - "@1adybug/prettier-plugin-remove-braces"
     - "@1adybug/prettier-plugin-sort-imports"
     - "@1adybug/xlsx"
-    - deepsea-components
-    - deepsea-tools
-    - sdrr
-    - soda-antd
-    - soda-hooks
-    - soda-react
-    - soda-tanstack-query
-    - soda-type
+    - "@1adybug/components"
+    - "@1adybug/tools"
+    - "@1adybug/react-router-cli"
+    - "@1adybug/antd"
+    - "@1adybug/hooks"
+    - "@1adybug/react"
+    - "@1adybug/tanstack-query"
+    - "@1adybug/types"
