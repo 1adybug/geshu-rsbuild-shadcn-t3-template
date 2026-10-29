@@ -104,7 +104,7 @@ Get-Content rsbuild.config.ts -Raw
 使用 `rg` 搜索实际引用，不要只根据 `package.json` 推断：
 
 ```powershell
-rg -n 'antd|@ant-design|soda-antd|message\.|ConfigProvider|StyleProvider|FormSubscribe' -g '!node_modules'
+rg -n 'antd|@ant-design|@1adybug/antd|message\.|ConfigProvider|StyleProvider|FormSubscribe' -g '!node_modules'
 rg -n 'tailwind|postcss|autoprefixer|dayjs|source-han-sans' -g '!node_modules' -g '!pnpm-lock.yaml'
 ```
 
@@ -257,7 +257,7 @@ npx --yes shadcn@latest preset decode b6HGg41FS
 只有在 `rg` 确认无引用后，才能删除：
 
 - Ant Design 及其样式运行时。
-- `soda-antd`。
+- `@1adybug/antd`。
 - 仅服务于旧 Tailwind CSS 3 的依赖。
 - 仅服务于 Ant Design 的日期或字体依赖。
 
@@ -321,7 +321,7 @@ git status --short
 使用 `rg` 搜索：
 
 - Ant Design 包和子路径导入。
-- `soda-antd`。
+- `@1adybug/antd`。
 - 全局 `message`。
 - `.ant-*` 样式。
 - Tailwind CSS 3 指令。
